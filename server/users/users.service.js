@@ -2,7 +2,7 @@ const axios = require('axios').default;
 
 async function fetchAllUsers() {
   const { data: users } = await axios.get(
-    'https://jsonplaceholder.typicode.com/users',
+    'https://jsonplaceholder.typicode.com/users/:userId',
   );
 
   return users;

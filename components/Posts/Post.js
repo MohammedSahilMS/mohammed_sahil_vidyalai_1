@@ -27,7 +27,7 @@ const Carousel = styled.div(() => ({
 
 const CarouselItem = styled.div(() => ({
   flex: '0 0 auto',
-  scrollSnapAlign: 'start',
+  scrollSnapAlign: 'center',
 }));
 
 const Image = styled.img(() => ({
@@ -46,13 +46,19 @@ const Content = styled.div(() => ({
 
 const Button = styled.button(() => ({
   position: 'absolute',
-  bottom: 0,
+  top: '50%',
+  transform: 'translateY(-50%)',
   backgroundColor: 'rgba(255, 255, 255, 0.5)',
   border: 'none',
   color: '#000',
   fontSize: '20px',
   cursor: 'pointer',
   height: '50px',
+  width: '30px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  zIndex: 1,
 }));
 
 const PrevButton = styled(Button)`
@@ -63,13 +69,15 @@ const NextButton = styled(Button)`
   right: 10px;
 `;
 
+
+
 const Post = ({ post }) => {
   const carouselRef = useRef(null);
 
   const handleNextClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: 50,
+        left: 300,
         behavior: 'smooth',
       });
     }
@@ -78,7 +86,7 @@ const Post = ({ post }) => {
   const handlePrevClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: -70,
+        left: -300,
         behavior: 'smooth',
       });
     }
@@ -90,6 +98,25 @@ const Post = ({ post }) => {
         <Carousel ref={carouselRef}>
           {post.images.map((image, index) => (
             <CarouselItem key={index}>
+              
+              {/* <h5>{post.username}</h5>
+              <h5>{post.emal}</h5>
+
+              TO FETCH AND DISPLAY USERNAME AND EMAIL OF THE USER AND TO DISPLAY IT ON THE TOP OF THE CARD. */}
+
+              
+              <div style={{display:"flex",  }}>
+              <div style={{background:"grey" ,padding:"8px" , color:"#fff", margin:"10px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center"}} >
+                    <h3>LG</h3>
+              </div>
+                <div style={{padding:"8px" , alignItems:"center", justifyContent:"center"}}>
+                <h4 style={{fontWeight:"900"}} >  Leanne Graham</h4>
+                <p>Sinsere@april.biz</p>
+                </div>
+               
+              </div>
+                 
+             
               <Image src={image.url} alt={post.title} />
             </CarouselItem>
           ))}
